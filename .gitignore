@@ -1,0 +1,6 @@
+setting.bin
+timetable.cache
+*.zip
+ctcal-single.*
+bin
+obj
