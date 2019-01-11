@@ -66,6 +66,16 @@ function zipping() {
   zip $exec_name-mac.zip $exec_name-single.macos
 }
 
+function clean() {
+  local exec_name=$1
+  local list=($exec_name-win64.zip $exec_name-single.exe $exec_name-linux64.zip $exec_name-single.linux $exec_name-mac.zip $exec_name-single.macos)
+
+  for fname in $list; do
+    rm -f $fname
+  done
+}
+
+clean ctcal
 build_scd
 download_and_copy_driver
 warpping ctcal
