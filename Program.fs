@@ -1,4 +1,4 @@
-﻿module Program
+module Program
 open FSharp.CommandLine
 open MBrace.FsPickler
 open ClassPrinter
@@ -48,7 +48,7 @@ let inline readCache file =
 let widthOption =
   commandOption {
     names ["w"; "width"]
-    description "各コマの要素の表示幅を指定(デフォルトは20)"
+    description "各コマの要素の表示幅を指定(デフォルトはウィンドウの幅で自動的に調節する)"
     takes (format("%d").map (fun width -> width))
   }
 
@@ -58,6 +58,9 @@ let updateOption =
     description "キャッシュを強制的に更新する．(デフォルトは前回取得時から30日経過してる場合に更新する)"
   }
 
+let default_width =
+  let w = Console.WindowWidth
+  (w - 6) / 5
 
 let mainCommand () =
   command {
@@ -65,7 +68,7 @@ let mainCommand () =
     description "Class Table Calendar"
 
     opt width in widthOption |> CommandOption.zeroOrExactlyOne
-                             |> CommandOption.whenMissingUse 20
+                             |> CommandOption.whenMissingUse default_width
     opt update in updateOption |> CommandOption.zeroOrExactlyOne
                                |> CommandOption.whenMissingUse false
 

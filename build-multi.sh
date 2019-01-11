@@ -12,7 +12,12 @@ function download_and_copy_driver() {
   local base="bin/Release/netcoreapp2.2/"
 
   cd "$base/win-x64/"
-  rm chromedriver chromedriver.exe
+  if [ -e chromedriver ]; then
+    rm chromedriver chromedriver.exe
+  fi
+  if [ -e chromedriver.exe ]; then
+    rm chromedriver.exe
+  fi
   if [ ! -e chromedriver_win32.zip ]; then
     wget $win
   fi
@@ -21,7 +26,9 @@ function download_and_copy_driver() {
   cd $old
 
   cd "$base/linux-x64/"
-  rm chromedriver
+  if [ -e chromedriver ]; then
+    rm chromedriver
+  fi
   if [ ! -e chromedriver_linux64.zip ]; then
     wget $linux
   fi
@@ -30,8 +37,10 @@ function download_and_copy_driver() {
   cd $old
 
   cd "$base/osx-x64/"
-  rm chromedriver
-  if [ ! -e chromedriver_mac64.zip]; then
+  if [ -e chromedriver ]; then
+    rm chromedriver
+  fi
+  if [ ! -e chromedriver_mac64.zip ]; then
     wget $mac
   fi
   unzip chromedriver_mac64.zip

@@ -32,6 +32,7 @@ let unregisterd = {id="未登録"; name=""; teacher=""}
 let unregisterd_vis  = {id="未登録"; names=[]; teacher=""}
 
 open PrintUtil
+open System.Globalization
 
 let color_UNK   = new Color "#FF0A70"
 let color_RED   = new Color "#F06060"
@@ -76,7 +77,7 @@ let tarnsform_crass_entry_to_vis max_width max_name_lines =
           ret |> List.rev
         else begin
           let sub_str = if i = j then "" else String.slice text j i
-          if Unicode.east_asian_width sub_str >= max_width || text.[i] = ' '  then
+          if Unicode.east_asian_width sub_str >= max_width - 1 || text.[i] = ' '  then
             if Unicode.east_asian_width sub_str <> String.length sub_str then
               splits_impl (i :: ret) (i + 2) i text max_width
             else
