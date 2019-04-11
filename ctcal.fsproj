@@ -11,12 +11,15 @@
     <Compile Include="Unicode.fs" />
     <Compile Include="PrintUtil.fs" />
     <Compile Include="ClassPrinter.fs" />
+    <Compile Include="KdbDriver.fs" />
     <Compile Include="DataFetch.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.11.0" />
     <PackageReference Include="FSharp.CommandLine" Version="3.1.3294.2201" />
+    <PackageReference Include="FSharp.Data" Version="3.0.1" />
     <PackageReference Include="FsPickler" Version="5.2" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="2.45.0" />
